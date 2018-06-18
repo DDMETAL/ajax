@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>级联下拉列表</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+	function getUn(){
+		var xhr=getAjax();
+		xhr.open('get','getUn.do?province='+$F('s1'),true);
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var txt=xhr.responseText;
+				//bd:北大;qh:清华
+				var uns=txt.split(';');
+				//添加Option到s2，添加之前要先清s2
+				$('s2').innerHTML='';
+				for(i=0;i<uns.length;i++){
+					var un=uns[i];
+					//bd:北大
+					var info=un.split(':');
+					var op=new Option(info[1],info[0]);
+					//将op添加到s2下
+					/*
+						下拉列表的options属性是一个数组
+						里面存放的是该列表中所有的Option对象
+					*/
+					$('s2').options[i]=op;
+				}
+			}
+		};
+		xhr.send(null);
+	}
+</script>
+</head>
+<body>
+	<select id="s1" style="width:150px;" onchange="getUn();">
+		<option value="bj">北京</option>
+		<option value="sh">上海</option>
+		<option value="sz">深圳</option>
+	</select>
+	<select id="s2" style="width:150px;">
+		
+	</select>
+</body>
+</html>

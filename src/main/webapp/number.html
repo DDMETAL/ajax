@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>number</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+	function showNumber(){
+		var xhr=getAjax();
+		xhr.open('get','getNumber.do?'+Math.random(),true);
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var txt=xhr.responseText;
+				$('msg').innerHTML=txt;
+			}
+		};
+		xhr.send(null);
+	}
+</script>
+</head>
+<body>
+	<a href="javascript:;" onclick="showNumber();">点击显示一个随机整数</a>
+	<span id="msg"></span><br/>
+</body>
+</html>

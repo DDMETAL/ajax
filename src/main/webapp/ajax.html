@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax</title>
+<script type="text/javascript">
+	function getAjax(){
+		var xhr=null;
+		if(window.XMLHttpRequest){
+		//非ie浏览器
+		xhr=new XMLHttpRequest();
+		}else{
+		//ie浏览器
+		xhr=new ActiveXObject('MicroSoft.XMLHttp');
+			}
+		return xhr;
+	}
+</script>
+</head>
+<body>
+	<a href="javascript:alert(getAjax());">Click</a>
+</body>
+</html>
